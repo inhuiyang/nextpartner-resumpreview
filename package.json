@@ -1,0 +1,14 @@
+{
+  "name": "nextpartner-resumpreview",
+  "version": "1.0.0",
+  "description": "넥스트파트너 이력서 미리보기 페이지",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/index.css -o ./dist/index.css --watch",
+    "build": "npx tailwindcss -i ./src/index.css -o ./dist/index.css --minify"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
