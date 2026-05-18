@@ -26,51 +26,51 @@
       vertical-align: middle;
     }
 
-    .resume-section-header {
-      background-color: #2a2a2a;
-      color: #ffffff;
+    /* .resume-table .XXX 형태로 특이성(0,2,0) 확보 — .resume-table td(0,1,1)를 이김 */
+    .resume-table .resume-section-header {
+      background-color: #e5d1c9;
+      color: #1a1a1a;
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 9px 16px;
+      padding: 9px 18px;
       text-align: center;
     }
 
-    .resume-col-header {
-      background-color: #e8e8e8;
-      color: #444444;
+    .resume-table .resume-col-header {
+      background-color: #f5edeb;
+      color: #333333;
       font-size: 12px;
       font-weight: 700;
-      padding: 8px 10px;
+      padding: 8px 12px;
       text-align: center;
       white-space: nowrap;
     }
 
-    .resume-label {
-      background-color: #f3f3f3;
+    .resume-table .resume-label {
+      background-color: #f8f4f3;
       color: #444444;
       font-size: 12px;
       font-weight: 700;
       padding: 10px 8px;
       text-align: center;
       white-space: nowrap;
-      min-width: 52px;
     }
 
-    .resume-value {
+    .resume-table .resume-value {
       background-color: #ffffff;
       color: #1a1a1a;
       font-size: 13px;
-      padding: 10px 12px;
-      line-height: 1.5;
+      padding: 10px 14px;
+      line-height: 1.6;
     }
 
-    .resume-value.muted {
+    .resume-table .resume-value.muted {
       color: #888888;
       font-style: italic;
     }
 
-    .resume-value.pre {
+    .resume-table .resume-value.pre {
       white-space: pre-wrap;
       line-height: 1.8;
     }
@@ -80,21 +80,17 @@
       color: #1a1a1a;
       font-size: 13px;
       padding: 16px;
-      line-height: 1.85;
+      line-height: 1.8;
       white-space: pre-wrap;
-      min-height: 120px;
+      min-height: 130px;
     }
 
     .photo-box {
       width: 90px;
       min-height: 112px;
-      background-color: #f0f0f0;
       border-left: 1px solid #c8c8c8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
+      padding: 0;
+      overflow: hidden;
     }
 
     .photo-box img {
@@ -106,6 +102,12 @@
 
     /* 인쇄 시 스타일 */
     @media print {
+      /* 배경색·이미지 강제 출력 */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
       .no-print { display: none !important; }
 
       body {
@@ -113,9 +115,16 @@
         padding: 0 !important;
       }
 
+      /* 배경 컨테이너 패딩 제거 */
       .resume-page-bg {
         background: white !important;
         padding: 0 !important;
+      }
+
+      /* 이력서 용지를 A4 전체 너비로 */
+      .resume-page-bg > div {
+        padding: 0 !important;
+        max-width: none !important;
       }
 
       .resume-paper {
@@ -137,27 +146,22 @@
   <!-- ── 헤더 ── -->
   <header class="np-header sticky top-0 z-50 no-print">
     <div class="np-header-inner">
-      <a href="#" class="flex items-center gap-2 shrink-0">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <path d="M16 2L28.7 9.5V24.5L16 32L3.3 24.5V9.5L16 2Z" fill="#ff7f65"/>
-          <path d="M11 10h2.5l5 12H16l-1.2-3H10l-1.2 3H6.5L11 10Zm2.8 7-1.8-4.5L10.2 17h3.6Z" fill="white"/>
-        </svg>
-        <span class="text-xl font-bold text-neutral-900 tracking-tight">NextPartner</span>
-      </a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="#" class="flex items-center gap-2">
+          <img src="img/symbol.png" width="32" height="32" alt="NextPartner" />
+          <span class="text-xl font-bold text-neutral-900 tracking-tight">NextPartner</span>
+        </a>
+        <span class="np-badge np-badge-warning">구직자</span>
+      </div>
       <nav class="np-header-nav">
-        <a class="np-nav-link-job">채용</a>
-        <a class="np-nav-link-job">프로젝트</a>
-        <a class="np-nav-link-job active">이력서</a>
-        <div class="np-header-divider"></div>
-        <a class="np-nav-link">서비스소개</a>
-        <a class="np-nav-link">공지사항</a>
-        <a class="np-nav-link">FAQ</a>
+        <button class="np-btn np-btn-primary np-btn-sm">이력서·자기소개서</button>
+        <button class="np-btn np-btn-primary np-btn-sm">인재풀 등록</button>
+        <a class="np-nav-link">일자리</a>
+        <a class="np-nav-link">프로젝트</a>
+        <a class="np-nav-link">박람회</a>
       </nav>
       <div class="np-header-actions">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-full bg-primary-100 overflow-hidden shrink-0 flex items-center justify-center">
-            <i data-lucide="user" class="w-5 h-5 text-primary-500"></i>
-          </div>
           <span class="text-base text-neutral-600">홍길동님</span>
         </div>
         <button class="flex items-center justify-center w-10 h-10 text-neutral-400 rounded-button hover:bg-neutral-50 hover:text-neutral-800 transition-colors" aria-label="로그아웃">
@@ -173,7 +177,7 @@
   <div class="flex-1">
 
     <!-- ── 액션 툴바 ── -->
-    <div class="no-print w-full bg-neutral-0 border-b border-neutral-200 sticky top-14 md:top-16 z-40">
+    <div class="no-print w-full bg-neutral-0 border-b border-neutral-200 sticky top-16 md:top-20 z-40">
       <div class="w-full max-w-content mx-auto px-4 md:px-6 lg:px-8 py-3">
         <div class="flex items-center justify-between gap-3">
           <!-- 뒤로가기 + 제목 -->
@@ -208,18 +212,18 @@
     </div>
 
     <!-- ── 이력서 페이지 배경 ── -->
-    <div class="resume-page-bg w-full bg-neutral-100 py-6 md:py-10">
-      <div class="w-full max-w-content mx-auto px-2 md:px-6 lg:px-8 flex justify-center">
+    <div class="resume-page-bg w-full bg-neutral-100 py-8 md:py-12">
+      <div class="w-full max-w-content mx-auto px-4 md:px-6 lg:px-8 flex justify-center">
 
         <!-- ── 이력서 용지 (A4 느낌) ── -->
-        <div class="resume-paper w-full bg-neutral-0 shadow-[0_4px_24px_rgba(0,0,0,0.13)]"
+        <div class="resume-paper w-full bg-neutral-0"
              style="max-width: 794px;">
 
           <!-- ═══════════════════════════════
                이력서 상단 타이틀
           ════════════════════════════════ -->
-          <div class="resume-title-bar" style="background-color:#1a1a1a; padding: 14px 20px; text-align:center;">
-            <h2 style="color:#ffffff; font-size:20px; font-weight:800; letter-spacing:0.18em; margin:0;">이 력 서</h2>
+          <div class="resume-title-bar" style="background-color:#e5d1c9; padding: 11px 20px; text-align:center;">
+            <h2 style="color:#1a1a1a; font-size:20px; font-weight:800; letter-spacing:0.18em; margin:0;">이 력 서</h2>
           </div>
 
           <!-- 이력서 제목 (사용자 입력) -->
@@ -233,10 +237,10 @@
           ════════════════════════════════ -->
           <table class="resume-table">
             <colgroup>
-              <col style="width:52px" />
+              <col style="width:68px" />
               <col />
-              <col style="width:60px" />
-              <col style="width:120px" />
+              <col style="width:72px" />
+              <col style="width:130px" />
               <col style="width:92px" />
             </colgroup>
             <thead>
@@ -251,9 +255,7 @@
                 <td class="resume-label">생년월일</td>
                 <td class="resume-value">1965. 03. 21</td>
                 <td class="photo-box" rowspan="4">
-                  <!-- 사진 없음 placeholder -->
-                  <i data-lucide="user" style="width:28px;height:28px;color:#bbbbbb;"></i>
-                  <span style="font-size:10px;color:#bbbbbb;margin-top:4px;">사진없음</span>
+                  <img src="https://i.pravatar.cc/90?img=52" alt="프로필 사진" />
                 </td>
               </tr>
               <tr>
@@ -270,11 +272,36 @@
                 <td class="resume-label">주 소</td>
                 <td class="resume-value" colspan="3">서울특별시 강남구 테헤란로 123, 101동 502호</td>
               </tr>
+            </tbody>
+          </table>
+
+          <!-- ═══════════════════════════════
+               희망 조건
+          ════════════════════════════════ -->
+          <table class="resume-table" style="margin-top:-1px;">
+            <colgroup>
+              <col style="width:78px" />
+              <col />
+              <col style="width:78px" />
+              <col />
+            </colgroup>
+            <thead>
               <tr>
-                <td class="resume-label">희망직무</td>
+                <td colspan="4" class="resume-section-header" style="letter-spacing:0.15em;">희 망 조 건</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="resume-label">희망 직무</td>
                 <td class="resume-value">영업 · 마케팅</td>
-                <td class="resume-label">희망근무지</td>
-                <td class="resume-value" colspan="2">서울 · 경기</td>
+                <td class="resume-label">희망 근무지</td>
+                <td class="resume-value">서울 · 경기</td>
+              </tr>
+              <tr>
+                <td class="resume-label">고용 형태</td>
+                <td class="resume-value">정규직</td>
+                <td class="resume-label">희망 급여</td>
+                <td class="resume-value">연 3,600만원 이상</td>
               </tr>
             </tbody>
           </table>
@@ -379,12 +406,6 @@
             </thead>
             <tbody>
               <tr>
-                <td class="resume-value" style="text-align:center; font-size:12px; white-space:nowrap;">1984.03 ~ 1987.02</td>
-                <td class="resume-value">서울중앙고등학교 <span style="color:#888;font-size:12px;">(고등학교)</span></td>
-                <td class="resume-value" style="text-align:center; color:#888; font-size:12px;">—</td>
-                <td class="resume-value" style="text-align:center; font-weight:600;">졸업</td>
-              </tr>
-              <tr>
                 <td class="resume-value" style="text-align:center; font-size:12px; white-space:nowrap;">1987.03 ~ 1991.02</td>
                 <td class="resume-value">한국대학교 <span style="color:#888;font-size:12px;">(대학교 4년제)</span></td>
                 <td class="resume-value" style="text-align:center;">경영학과</td>
@@ -418,16 +439,6 @@
                 <td class="resume-value" style="text-align:center;">대한상공회의소</td>
                 <td class="resume-value" style="text-align:center; font-size:12px;">2003.08</td>
               </tr>
-              <tr>
-                <td class="resume-value" style="font-weight:600;">무역영어 1급</td>
-                <td class="resume-value" style="text-align:center;">대한상공회의소</td>
-                <td class="resume-value" style="text-align:center; font-size:12px;">2009.11</td>
-              </tr>
-              <tr>
-                <td class="resume-value" style="font-weight:600;">컴퓨터활용능력 1급</td>
-                <td class="resume-value" style="text-align:center;">대한상공회의소</td>
-                <td class="resume-value" style="text-align:center; font-size:12px;">2012.05</td>
-              </tr>
             </tbody>
           </table>
 
@@ -458,12 +469,6 @@
                 <td class="resume-value" style="text-align:center;">TOEIC</td>
                 <td class="resume-value" style="text-align:center; font-weight:600; color:#ff7f65;">820점</td>
                 <td class="resume-value" style="text-align:center; font-size:12px;">2022.09</td>
-              </tr>
-              <tr>
-                <td class="resume-value" style="text-align:center; font-weight:600;">일본어</td>
-                <td class="resume-value" style="text-align:center;">JLPT</td>
-                <td class="resume-value" style="text-align:center; font-weight:600; color:#ff7f65;">N2</td>
-                <td class="resume-value" style="text-align:center; font-size:12px;">2018.07</td>
               </tr>
             </tbody>
           </table>
@@ -505,39 +510,45 @@
                자기소개서
           ════════════════════════════════ -->
           <table class="resume-table" style="margin-top:-1px;">
+            <colgroup>
+              <col style="width:72px" />
+              <col />
+            </colgroup>
             <thead>
               <tr>
-                <td class="resume-section-header" style="letter-spacing:0.15em;">자 기 소 개 서</td>
+                <td colspan="2" class="resume-section-header" style="letter-spacing:0.15em;">자 기 소 개 서</td>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td class="resume-label" style="vertical-align:top; padding-top:14px; font-size:11px; line-height:1.5; word-break:keep-all;">성장<br/>배경</td>
                 <td style="padding:0; border:1px solid #c8c8c8;">
-                  <div class="resume-cover-letter">안녕하십니까. 저는 20년 이상의 영업 경험을 바탕으로 귀사에 지원한 홍길동입니다.
+                  <div class="resume-cover-letter">저는 1965년 서울에서 태어나, 성실함과 책임감을 중시하는 가정에서 자랐습니다. 어릴 때부터 사람들과의 소통을 즐겼으며, 학창 시절 학급 반장으로서 다양한 사람들을 이해하고 조율하는 경험을 쌓았습니다. 한국대학교 경영학과를 졸업한 후, 영업·무역 분야에서 20년 이상 경험을 쌓으며 전문성을 키워왔습니다.</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="resume-label" style="vertical-align:top; padding-top:14px; font-size:11px; line-height:1.5; word-break:keep-all;">지원<br/>동기</td>
+                <td style="padding:0; border:1px solid #c8c8c8;">
+                  <div class="resume-cover-letter">귀사는 중장년 시니어의 풍부한 경험과 역량을 적극 활용하는 기업 문화를 갖추고 있다는 점에서 큰 매력을 느꼈습니다. 저는 20년간의 B2B 영업 경험과 동남아 해외영업 경력을 바탕으로, 귀사의 신규 시장 개척과 고객 관계 강화에 실질적인 기여를 할 수 있다고 확신합니다. 단순히 일자리를 구하는 것이 아니라, 제 경험이 귀사의 성장에 진정한 가치가 될 수 있다고 판단하여 지원하였습니다.</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="resume-label" style="vertical-align:top; padding-top:14px; font-size:11px; line-height:1.5; word-break:keep-all;">성격의<br/>장단점</td>
+                <td style="padding:0; border:1px solid #c8c8c8;">
+                  <div class="resume-cover-letter">【장점】 한번 맺은 인연을 소중히 여기고 끈기 있게 관계를 유지하는 것이 저의 가장 큰 강점입니다. 고객의 요구를 세심하게 파악하고 신뢰를 쌓는 데 탁월하다는 평가를 받아왔습니다. 또한 목표가 설정되면 반드시 달성하려는 집중력과 책임감이 강합니다.
 
-저는 (주)ABC상사에서 부장으로 재직하며 연간 120억 원 규모의 영업 목표를 지속적으로 달성해 왔습니다. 특히 신규 거래처 발굴에 강점이 있으며, 재직 기간 동안 50개 이상의 신규 거래처를 개척하였습니다.
-
-해외영업 경험도 보유하고 있어, 동남아시아 바이어와의 협상 및 수출입 업무를 5년간 담당하였습니다. 이 과정에서 영어와 일본어 실무 능력을 키웠으며, TOEIC 820점을 보유하고 있습니다.
-
-저의 가장 큰 강점은 고객과의 신뢰 관계 구축입니다. 한번 거래를 시작한 고객과의 장기적인 파트너십을 유지하는 것을 중요하게 생각하며, 이를 통해 매출 성장과 고객 만족을 동시에 이루어 왔습니다.
-
-귀사에 입사한다면, 그동안 쌓아온 영업 역량과 경험을 십분 발휘하여 회사 발전에 기여하겠습니다. 감사합니다.</div>
+【단점】 완벽주의적인 성향으로 인해 업무 처리 속도가 다소 느려지는 경우가 있습니다. 이를 극복하기 위해 우선순위를 명확히 정하고, 기한 내 완료를 최우선으로 하는 습관을 길렀습니다.</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="resume-label" style="vertical-align:top; padding-top:14px; font-size:11px; line-height:1.5; word-break:keep-all;">입사 후<br/>포부</td>
+                <td style="padding:0; border:1px solid #c8c8c8;">
+                  <div class="resume-cover-letter">입사 후 첫 3개월은 귀사의 업무 프로세스와 제품·서비스를 철저히 숙지하는 데 집중하겠습니다. 이후 기존 거래처와의 관계를 강화하는 동시에 신규 거래처 발굴에 박차를 가하여, 입사 1년 내 팀 매출 목표의 110% 이상 달성을 목표로 하겠습니다. 나아가 후배 직원들의 멘토 역할을 자처하여, 경험과 노하우를 조직 전체가 공유할 수 있도록 기여하겠습니다.</div>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <!-- 서명란 -->
-          <div style="border: 1px solid #c8c8c8; border-top:none; padding: 16px 20px; display:flex; justify-content:flex-end; align-items:center; gap: 12px; background:#ffffff;">
-            <span style="font-size:13px; color:#444;">위 기재 내용은 사실과 다름이 없음을 확인합니다.</span>
-            <span style="font-size:13px; color:#444;">2026년 05월 15일</span>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:13px; color:#444; font-weight:600;">홍길동</span>
-              <div style="width:60px; height:24px; border: 1px dashed #cccccc; display:flex; align-items:center; justify-content:center;">
-                <span style="font-size:10px; color:#bbbbbb;">(서명)</span>
-              </div>
-            </div>
-          </div>
 
         </div><!-- /resume-paper -->
       </div>
@@ -566,29 +577,34 @@
   <!-- ── 푸터 ── -->
   <footer class="np-footer no-print mt-0">
     <div class="np-footer-inner">
-      <div>
-        <p class="np-footer-tagline">중장년을 위한 일자리 매칭 플랫폼</p>
-        <p class="np-footer-info">
-          주식회사 모리아이온  ·  대표: 권모형  ·  사업자등록번호: 215-88-89431<br/>
-          주소: 05854 서울특별시 송파구 법원로 114 (문정동) 빌딩 915호  ·  전화: 02-6713-7076<br/>
-          직업정보제공사업 신고번호: 서울동부 제2026-11호<br/>
-          © 2026 NextPartner. All rights reserved.
-        </p>
+      <div class="flex flex-col justify-between gap-8 flex-1">
+        <div>
+          <p class="np-footer-tagline">중장년층을 위한 일자리 매칭 플랫폼</p>
+          <p class="np-footer-info">
+            주식회사 모리아타운 &nbsp;|&nbsp; 대표: 권오형 &nbsp;|&nbsp; 사업자등록번호: 215-86-89431<br/>
+            주소: 05854 서울특별시 송파구 법원로 114 (문정동) 비동 915호 &nbsp;|&nbsp; 전화:
+            <a href="tel:02-6713-7076" class="underline hover:text-neutral-900 transition-colors">02-6713-7076</a><br/>
+            직업정보제공사업 신고번호: 서울동부 제2026-11호
+          </p>
+          <p class="np-footer-info mt-3">© 2026 NextPartner. All rights reserved.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <img src="img/symbol.png" width="40" height="40" alt="NextPartner" />
+          <div>
+            <p class="text-base font-bold text-neutral-900 leading-tight">NextPartner</p>
+            <p class="text-sm text-neutral-400 leading-tight">Senior Talent Marketplace</p>
+          </div>
+        </div>
       </div>
-      <div>
+      <div class="shrink-0">
         <p class="np-footer-section-title">Support</p>
+        <a class="np-footer-link">고객센터</a>
+        <a class="np-footer-link">회사소개</a>
         <a class="np-footer-link">개인회원 이용약관</a>
         <a class="np-footer-link">기업회원 이용약관</a>
         <a class="np-footer-link">개인정보 처리방침</a>
         <a class="np-footer-link">위치기반서비스</a>
       </div>
-    </div>
-    <div class="flex items-center gap-2 mt-6 max-w-content mx-auto">
-      <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-        <path d="M16 2L28.7 9.5V24.5L16 32L3.3 24.5V9.5L16 2Z" fill="#ff7f65"/>
-        <path d="M11 10h2.5l5 12H16l-1.2-3H10l-1.2 3H6.5L11 10Zm2.8 7-1.8-4.5L10.2 17h3.6Z" fill="white"/>
-      </svg>
-      <span class="text-base font-bold text-neutral-900">NextPartner</span>
     </div>
   </footer>
 
@@ -617,16 +633,44 @@
 
   <script>
     function handlePdfDownload() {
-      showToast('PDF 저장 기능은 준비 중입니다. 인쇄 → PDF로 저장을 이용해 주세요.');
+      showToast('info', 'PDF 저장 기능은 준비 중입니다. 인쇄 → PDF로 저장을 이용해 주세요.');
     }
 
-    function showToast(msg) {
-      const wrap = document.getElementById('toast-wrap');
-      const toast = document.createElement('div');
-      toast.className = 'np-toast';
-      toast.textContent = msg;
-      wrap.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
+    function showToast(type, msg) {
+      var ICONS = {
+        default: { lucide: 'info',           cls: 'text-neutral-400' },
+        info:    { lucide: 'info',            cls: 'text-info-500'    },
+        success: { lucide: 'circle-check',    cls: 'text-success-500' },
+        warning: { lucide: 'triangle-alert',  cls: 'text-warning-500' },
+        error:   { lucide: 'x',              cls: 'text-error-500'   },
+      };
+      var cfg = ICONS[type] || ICONS['default'];
+      var wrap = document.getElementById('toast-wrap');
+      var el = document.createElement('div');
+      el.className = 'np-toast';
+      el.style.animation = 'np-toast-in 200ms ease-out';
+
+      var icon = document.createElement('i');
+      icon.setAttribute('data-lucide', cfg.lucide);
+      icon.className = 'w-5 h-5 shrink-0 ' + cfg.cls;
+      el.appendChild(icon);
+      lucide.createIcons({ nameAttr: 'data-lucide', nodes: [icon] });
+
+      var span = document.createElement('span');
+      span.textContent = msg;
+      el.appendChild(span);
+
+      wrap.appendChild(el);
+
+      var timer = setTimeout(function () { dismiss(el); }, 4000);
+      el.addEventListener('click', function () { clearTimeout(timer); dismiss(el); });
+    }
+
+    function dismiss(el) {
+      el.style.animation = 'np-toast-out 200ms ease-in forwards';
+      el.addEventListener('animationend', function () {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, { once: true });
     }
 
     lucide.createIcons({ nameAttr: 'data-lucide' });
